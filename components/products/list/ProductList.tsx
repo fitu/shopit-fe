@@ -2,8 +2,8 @@ import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 
-import Product from '../../model/Product';
-import ProductDetails from './ProductDetails';
+import Product from '../../../model/Product';
+import ProductDetails from '../details/ProductDetails';
 
 const ProductList: React.FC<Props> = ({ products }): ReactElement => {
     if (isEmpty(products)) {
