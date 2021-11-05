@@ -5,8 +5,8 @@
 
     height: 6rem;
 
-    background-color: var(--primary-color);
-    border-bottom: 3px solid var(--primary-color);
+    background-color: colors.$primary-color;
+    border-bottom: 3px solid colors.$primary-color;
 }
 
 .searchContainer {

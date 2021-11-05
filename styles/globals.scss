@@ -1,5 +1,3 @@
-@use 'colors';
-
 * {
     box-sizing: border-box;
 }
@@ -16,19 +14,6 @@ body {
 
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
         Helvetica Neue, sans-serif;
-
-    // Colors
-    --primary-color: colors.$primary-color;
-    --primary-dark-color: colors.$primary-dark-color;
-    --text-color: colors.$text-color;
-    --text-muted-color: colors.$text-muted-color;
-    --text-inverted-color: colors.$text-inverted-color;
-    --background-dark-color: colors.$background-dark-color;
-    --background-darker-color: colors.$background-darker-color;
-    --background-darkest-color: colors.$background-darkest-color;
-    --background-light-color: colors.$background-light-color;
-    --background-lighter-color: colors.$background-lighter-color;
-    --background-lightest-color: colors.$background-lightest-color;
 }
 
 a {
