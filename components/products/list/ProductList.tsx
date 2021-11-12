@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import Product from '../../../model/Product';
 import ProductDetails from '../details/ProductDetails';
 
-const ProductList: React.FC<Props> = ({ products }): ReactElement => {
+const ProductList = ({ products }: Props): ReactElement => {
     if (isEmpty(products)) {
         return (
             <div>

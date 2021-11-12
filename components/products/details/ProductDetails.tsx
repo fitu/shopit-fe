@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ReactElement } from "react";
 import Product from '../../../model/Product';
 
-const ProductDetails: React.FC<Props> = ({ product }): ReactElement => {
+const ProductDetails = ({ product }: Props): ReactElement => {
     const imageSrc = isEmpty(product.images) ? '' : product.images[0].url;
 
     return (

@@ -1,11 +1,17 @@
 .container {
+    display: flex;
 }
 
 .searchTitle {
+    color: colors.$white;
 }
 
 .searchButton {
+    all: unset;
+    background-color: colors.$primary-color;
 }
 
 .searchIcon {
+    color: colors.$white;
+    background-color: colors.$primary-color;
 }
