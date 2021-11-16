@@ -1,25 +1,43 @@
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { ReactElement } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import InputValue from '../../forms/InputValue';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
+import InputForm from '../../forms/InputForm';
+
+import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 import styles from './searchProducts.module.scss';
 
 const SearchProducts: React.FC = (): ReactElement => {
+    const validationSchema = Yup.object().shape({
+        [SEARCH]: Yup.string().required(),
+    });
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitted },
+    } = useForm<SearchProductsFormType>({
+        resolver: yupResolver(validationSchema),
+    });
+
+    const onSubmit = async (formData: SearchProductsFormType): Promise<void> => { }
+
     return (
-        <div className={styles.container}>
-            <InputValue
-                isSubmitted={true}
-                isValid={false}
+        <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
+            <InputForm
+                isSubmitted={isSubmitted}
+                isValid={errors[SEARCH] !== undefined}
                 label='this is the label'
-                name={'search'}
+                name={SEARCH}
                 placeHolder='this is the placeholder'
-                value={1}
-                setValue={() => 2}
+                register={register}
             />
             <button className={styles.searchButton}>
                 <FaSearch className={styles.searchIcon} />
             </button>
-        </div>
+        </form>
     )
 };
 
