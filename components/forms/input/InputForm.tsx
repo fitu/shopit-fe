@@ -1,14 +1,14 @@
 import classNames from 'classnames';
-import { isEmpty, isNil } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
-import { EMPTY_TEXT_ID } from '../../l10n/languages';
+import { EMPTY_TEXT_ID } from '../../../l10n/languages';
+import { getTextToRender } from '../../utils/textUtils';
 
 import styles from './input.module.scss';
 
-const InputValue = ({
-    isSubmitted = false,
+const InputForm = ({
+    isSubmitted,
     isValid,
     label = '',
     labelId = EMPTY_TEXT_ID,
@@ -17,17 +17,18 @@ const InputValue = ({
     onlyPositivesWithoutZero = false,
     placeHolder = '',
     placeHolderId = EMPTY_TEXT_ID,
+    register = null,
     type = 'text',
     step = 1,
-    value,
-    setValue,
+    validations = { required: true },
+    value = null,
 }: Props): ReactElement => {
     const intl = useIntl();
 
     const containerClasses = classNames(styles.inputContainer, {
         [styles.inputFileContainer]: type === 'file',
-        [styles.inputValid]: isSubmitted && isValid,
-        [styles.inputInvalid]: isSubmitted && !isValid,
+        [styles.inputValid]: isSubmitted && validations.required && isValid,
+        [styles.inputInvalid]: isSubmitted && validations.required && !isValid,
     });
 
     const renderInput = (text: string): ReactElement => {
@@ -40,7 +41,7 @@ const InputValue = ({
                     step={step}
                     type={type}
                     value={value ?? undefined}
-                    onChange={(event) => setValue(event.target.value)}
+                    {...register?.(name, validations)}
                 />
             );
         }
@@ -49,22 +50,15 @@ const InputValue = ({
             <input
                 placeholder={text}
                 type={type}
+                {...register?.(name, validations)}
                 value={value ?? undefined}
-                onChange={(event) => setValue(event.target.value)}
             />
         );
     };
 
-    const getTextToRender = (id: string, text: string): string => {
-        if (isNil(id) || isEmpty(id) || id === EMPTY_TEXT_ID) {
-            return text;
-        }
+    const labelText = getTextToRender(labelId, label, intl);
+    const placeHolderText = getTextToRender(placeHolderId, placeHolder, intl);
 
-        return intl.formatMessage({ id });
-    }
-
-    const labelText = getTextToRender(labelId, label);
-    const placeHolderText = getTextToRender(placeHolderId, placeHolder);
     return (
         <div className={containerClasses}>
             {(label || labelId) && <label htmlFor={name}>{labelText}</label>}
@@ -74,7 +68,7 @@ const InputValue = ({
 };
 
 interface Props {
-    isSubmitted?: boolean;
+    isSubmitted: boolean;
     isValid?: boolean;
     label?: string;
     labelId?: string;
@@ -84,13 +78,14 @@ interface Props {
     type?: string;
     placeHolder?: string;
     placeHolderId?: string;
+    register?: ((name: any, options?: any) => void) | null;
     step?: number;
-    value: number | string | null;
-    setValue: (value: number | string) => void;
+    validations?: any;
+    value?: number | string | null;
 }
 
-InputValue.propTypes = {
-    isSubmitted: PropTypes.bool,
+InputForm.propTypes = {
+    isSubmitted: PropTypes.bool.isRequired,
     isValid: PropTypes.bool,
     label: PropTypes.string,
     labelId: PropTypes.string,
@@ -99,12 +94,13 @@ InputValue.propTypes = {
     onlyPositivesWithoutZero: PropTypes.bool,
     placeHolder: PropTypes.string,
     placeHolderId: PropTypes.string,
+    register: PropTypes.func,
     type: PropTypes.string,
     step: PropTypes.number,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    setValue: PropTypes.func.isRequired,
+    validations: PropTypes.object,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
-InputValue.displayName = 'InputValue';
+InputForm.displayName = 'InputForm';
 
-export default InputValue;
+export default InputForm;

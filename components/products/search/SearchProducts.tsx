@@ -4,10 +4,11 @@ import { FaSearch } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
-import InputForm from '../../forms/InputForm';
+import InputForm from '../../forms/input/InputForm';
 
 import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 import styles from './searchProducts.module.scss';
+import ButtonWithIcon from '../../forms/button/ButtonWithIcon';
 
 const SearchProducts: React.FC = (): ReactElement => {
     const validationSchema = Yup.object().shape({
@@ -34,9 +35,11 @@ const SearchProducts: React.FC = (): ReactElement => {
                 placeHolder='this is the placeholder'
                 register={register}
             />
-            <button className={styles.searchButton}>
-                <FaSearch className={styles.searchIcon} />
-            </button>
+            <div className={styles.searchButton}>
+                <ButtonWithIcon isSubmit>
+                    <FaSearch className={styles.searchIcon} />
+                </ButtonWithIcon>
+            </div>
         </form>
     )
 };

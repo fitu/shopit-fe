@@ -3,12 +3,12 @@ import { isEmpty, isNil } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
-import { EMPTY_TEXT_ID } from '../../l10n/languages';
+import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 
 import styles from './input.module.scss';
 
-const InputForm = ({
-    isSubmitted,
+const InputValue = ({
+    isSubmitted = false,
     isValid,
     label = '',
     labelId = EMPTY_TEXT_ID,
@@ -17,18 +17,17 @@ const InputForm = ({
     onlyPositivesWithoutZero = false,
     placeHolder = '',
     placeHolderId = EMPTY_TEXT_ID,
-    register = null,
     type = 'text',
     step = 1,
-    validations = { required: true },
-    value = null,
+    value,
+    setValue,
 }: Props): ReactElement => {
     const intl = useIntl();
 
     const containerClasses = classNames(styles.inputContainer, {
         [styles.inputFileContainer]: type === 'file',
-        [styles.inputValid]: isSubmitted && validations.required && isValid,
-        [styles.inputInvalid]: isSubmitted && validations.required && !isValid,
+        [styles.inputValid]: isSubmitted && isValid,
+        [styles.inputInvalid]: isSubmitted && !isValid,
     });
 
     const renderInput = (text: string): ReactElement => {
@@ -41,7 +40,7 @@ const InputForm = ({
                     step={step}
                     type={type}
                     value={value ?? undefined}
-                    {...register?.(name, validations)}
+                    onChange={(event) => setValue(event.target.value)}
                 />
             );
         }
@@ -50,8 +49,8 @@ const InputForm = ({
             <input
                 placeholder={text}
                 type={type}
-                {...register?.(name, validations)}
                 value={value ?? undefined}
+                onChange={(event) => setValue(event.target.value)}
             />
         );
     };
@@ -75,7 +74,7 @@ const InputForm = ({
 };
 
 interface Props {
-    isSubmitted: boolean;
+    isSubmitted?: boolean;
     isValid?: boolean;
     label?: string;
     labelId?: string;
@@ -85,14 +84,13 @@ interface Props {
     type?: string;
     placeHolder?: string;
     placeHolderId?: string;
-    register?: ((name: any, options?: any) => void) | null;
     step?: number;
-    validations?: any;
-    value?: number | string | null;
+    value: number | string | null;
+    setValue: (value: number | string) => void;
 }
 
-InputForm.propTypes = {
-    isSubmitted: PropTypes.bool.isRequired,
+InputValue.propTypes = {
+    isSubmitted: PropTypes.bool,
     isValid: PropTypes.bool,
     label: PropTypes.string,
     labelId: PropTypes.string,
@@ -101,13 +99,12 @@ InputForm.propTypes = {
     onlyPositivesWithoutZero: PropTypes.bool,
     placeHolder: PropTypes.string,
     placeHolderId: PropTypes.string,
-    register: PropTypes.func,
     type: PropTypes.string,
     step: PropTypes.number,
-    validations: PropTypes.object,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    setValue: PropTypes.func.isRequired,
 };
 
-InputForm.displayName = 'InputForm';
+InputValue.displayName = 'InputValue';
 
-export default InputForm;
+export default InputValue;
