@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import { isEmpty, isNil } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
+import { EMPTY_TEXT_ID } from '../../l10n/languages';
 
 import styles from './input.module.scss';
 
@@ -10,18 +11,18 @@ const InputValue = ({
     isSubmitted = false,
     isValid,
     label = '',
-    labelId = '',
+    labelId = EMPTY_TEXT_ID,
     name,
     onlyPositives = true,
     onlyPositivesWithoutZero = false,
     placeHolder = '',
-    placeHolderId = '',
+    placeHolderId = EMPTY_TEXT_ID,
     type = 'text',
     step = 1,
     value,
     setValue,
 }: Props): ReactElement => {
-    // const intl = useIntl();
+    const intl = useIntl();
 
     const containerClasses = classNames(styles.inputContainer, {
         [styles.inputFileContainer]: type === 'file',
@@ -54,31 +55,20 @@ const InputValue = ({
         );
     };
 
-    const getInputComponent = (): ReactElement => {
-        if (isNil(placeHolderId) || isEmpty(placeHolderId)) {
-            return renderInput(placeHolder);
+    const getTextToRender = (id: string, text: string): string => {
+        if (isNil(id) || isEmpty(id) || id === EMPTY_TEXT_ID) {
+            return text;
         }
 
-        const text = 'foo' // intl.formatMessage({ id: placeHolderId });
-        return renderInput(text);
-    };
+        return intl.formatMessage({ id });
+    }
 
-    const getLabelText = (): string => {
-        if (label) {
-            return label;
-        }
-
-        if (labelId) {
-            return  'bar' // intl.formatMessage({ id: labelId });
-        }
-
-        return '';
-    };
-
+    const labelText = getTextToRender(labelId, label);
+    const placeHolderText = getTextToRender(placeHolderId, placeHolder);
     return (
         <div className={containerClasses}>
-            {(label || labelId) && <label htmlFor={name}>{getLabelText()}</label>}
-            {getInputComponent()}
+            {(label || labelId) && <label htmlFor={name}>{labelText}</label>}
+            {renderInput(placeHolderText)}
         </div>
     );
 };
