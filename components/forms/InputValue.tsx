@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import { isEmpty, isNil } from 'lodash';
-import PropTypes, { ReactNodeArray } from 'prop-types';
+import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import './input.module.scss';
+import styles from './input.module.scss';
 
 const InputValue = ({
     isSubmitted = false,
@@ -20,13 +21,13 @@ const InputValue = ({
     value,
     setValue,
 }: Props): ReactElement => {
-    const intl = useIntl();
+    // const intl = useIntl();
 
-    // const containerClasses = classNames('input-container', {
-    //     'input-file-container': type === 'file',
-    //     'input-valid': isSubmitted && isValid,
-    //     'input-invalid': isSubmitted && !isValid,
-    // });
+    const containerClasses = classNames(styles.inputContainer, {
+        [styles.inputFileContainer]: type === 'file',
+        [styles.inputValid]: isSubmitted && isValid,
+        [styles.inputInvalid]: isSubmitted && !isValid,
+    });
 
     const renderInput = (text: string): ReactElement => {
         if (type === 'number') {
@@ -58,7 +59,7 @@ const InputValue = ({
             return renderInput(placeHolder);
         }
 
-        const text = intl.formatMessage({ id: placeHolderId });
+        const text = 'foo' // intl.formatMessage({ id: placeHolderId });
         return renderInput(text);
     };
 
@@ -68,14 +69,14 @@ const InputValue = ({
         }
 
         if (labelId) {
-            return intl.formatMessage({ id: labelId });
+            return  'bar' // intl.formatMessage({ id: labelId });
         }
 
         return '';
     };
 
     return (
-        <div className={''}>
+        <div className={containerClasses}>
             {(label || labelId) && <label htmlFor={name}>{getLabelText()}</label>}
             {getInputComponent()}
         </div>
