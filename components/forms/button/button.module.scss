@@ -1,7 +1,9 @@
 .buttonIconContainer {
-}
+    all: unset;
 
-.buttonIconIcon {
+    padding-inline-start: 0.5rem;
+
+    cursor: pointer;
 }
 
 .buttonIconText {

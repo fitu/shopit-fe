@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import InputForm from '../../forms/input/InputForm';
+import ButtonWithIcon from '../../forms/button/ButtonWithIcon';
 
 import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 import styles from './searchProducts.module.scss';
-import ButtonWithIcon from '../../forms/button/ButtonWithIcon';
 
 const SearchProducts: React.FC = (): ReactElement => {
     const validationSchema = Yup.object().shape({
@@ -23,16 +23,16 @@ const SearchProducts: React.FC = (): ReactElement => {
         resolver: yupResolver(validationSchema),
     });
 
-    const onSubmit = async (formData: SearchProductsFormType): Promise<void> => { }
+    const onSubmit = async (formData: SearchProductsFormType): Promise<void> => {
+    }
 
     return (
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
             <InputForm
                 isSubmitted={isSubmitted}
                 isValid={errors[SEARCH] !== undefined}
-                label='this is the label'
                 name={SEARCH}
-                placeHolder='this is the placeholder'
+                placeHolderId='layout.header.search.search_here'
                 register={register}
             />
             <div className={styles.searchButton}>
