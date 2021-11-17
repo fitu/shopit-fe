@@ -1,7 +1,36 @@
 .inputContainer {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-size: 0.9rem;
+        color: hsl(0, 0%, 57%);
+    }
+
+    input {
+        padding-inline-start: 0.5rem;
+        border: 1px solid hsl(0, 0%, 79%);
+
+        border-radius: 5px;
+        line-height: 2rem;
+        outline-width: 0;
+
+        color: hsl(0, 0%, 33%);
+
+        &::placeholder {
+            padding-inline-start: 0.1rem;
+
+            font-size: 0.9rem;
+            color: hsl(0, 0%, 57%);
+        }
+    }
 }
 
 .inputFileContainer {
+    input {
+        padding-inline-start: 0;
+        border: none;
+    }
 }
 
 .inputValid {
