@@ -1,5 +1,7 @@
 {
     "empty": "",
 
-    "layout.header.search.search_here": "Search here"
+    "layout.header.search_here": "Search here",
+    "layout.header.nav_cart": "Cart",
+    "layout.header.nav_login": "Login"
 }

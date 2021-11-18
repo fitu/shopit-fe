@@ -32,7 +32,7 @@ const SearchProducts: React.FC = (): ReactElement => {
                 isSubmitted={isSubmitted}
                 isValid={errors[SEARCH] !== undefined}
                 name={SEARCH}
-                placeHolderId='layout.header.search.search_here'
+                placeHolderId='layout.header.search_here'
                 register={register}
             />
             <div className={styles.searchButton}>

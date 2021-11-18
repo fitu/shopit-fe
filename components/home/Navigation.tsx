@@ -1,21 +1,21 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react';
+import ListItem, { Item } from '../ui/ListItem';
+
+import styles from './navigation.module.scss';
+
+const navItems: Array<Item> = [
+    { id: '1', labelId: 'layout.header.nav_cart', },
+    { id: '2', labelId: 'layout.header.nav_login', }
+];
 
 const Navigation: React.FC = (): ReactElement => {
     return (
-        <nav>
-            <ul>
-                <li>
-                    <button>Cart</button>
-                </li>
-                <li>
-                    <button>Carrito</button>
-                </li>
-                <li>
-                    <button>Login</button>
-                </li>
+        <nav className={styles.container}>
+            <ul className={styles.list}>
+                {navItems.map((item) => (
+                    <ListItem key={item.id} item={item} />
+                ))}
             </ul>
-
-
         </nav>
     )
 };

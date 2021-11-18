@@ -1,0 +1,11 @@
+.container {
+    margin: 1rem;
+
+    background-color: colors.$primary-color;
+}
+
+.list {
+    display: flex;
+
+    gap: 1rem;
+}
