@@ -5,17 +5,19 @@ import { ReactElement } from 'react';
 import Product from '../../../model/Product';
 import ProductDetails from '../details/ProductDetails';
 
+import styles from './productList.module.scss';
+
 const ProductList = ({ products }: Props): ReactElement => {
     if (isEmpty(products)) {
         return (
-            <div>
-                <span>No Products!</span>
-            </div>
+            <section className={styles.noResultsContainer}>
+                <span className={styles.noResultsText}>No Products!</span>
+            </section>
         )
     }
 
     return (
-        <section>
+        <section className={styles.resultsContainer}>
             {products.map((product) => <ProductDetails key={product._id} product={product} />)}
         </section>
     )
