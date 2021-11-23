@@ -11,10 +11,12 @@ const ProductDetails = ({ product }: Props): ReactElement => {
 
     return (
         <data className={styles.container}>
-            <img className={styles.image} src={imageSrc} alt={product.name} />
+            <div className={styles.imageContainer}>
+                <img className={styles.image} src={imageSrc} alt={product.name} />
+            </div>
             <div className={styles.detailsContainer}>
-                <span className={styles.text}>{product.name}</span>
-                <span className={styles.text}>{product.price}</span>
+                <span className={styles.name}>{product.name}</span>
+                <span className={styles.price}>{`$ ${product.price}`}</span>
             </div>
         </data>
     )

@@ -6,8 +6,17 @@
     padding: 1rem;
 }
 
-.image {
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     flex: 2;
+}
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .detailsContainer {
@@ -18,5 +27,17 @@
     gap: 1rem;
 }
 
-.text {
+.name {
+    color: colors.$black;
+
+    &:hover {
+        color: colors.$text-color;
+    }
+}
+
+.price {
+    align-self: flex-start;
+
+    font-size: 1.2rem;
+    font-weight: bold;
 }
