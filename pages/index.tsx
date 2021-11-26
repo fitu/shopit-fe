@@ -5,7 +5,7 @@ import { getProducts } from '../data/productData';
 
 import styles from './index.module.scss';
 
-const HomePage: React.FC = (): ReactElement => {
+const HomePage = (): ReactElement => {
     const products = getProducts();
 
     return (

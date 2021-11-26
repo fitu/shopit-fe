@@ -8,7 +8,7 @@ import InternationalizationProvider from '../l10n/InternationalizationProvider';
 import '../styles/globals.scss';
 import styles from './app.module.scss';
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }): ReactElement => {
+const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   return (
     <InternationalizationProvider>
       <header className={styles.headerContainer}>
@@ -26,6 +26,5 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }): ReactElement => {
     </InternationalizationProvider>
   )
 }
-
 
 export default MyApp;

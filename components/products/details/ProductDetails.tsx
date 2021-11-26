@@ -1,4 +1,3 @@
-import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from "react";
 
@@ -7,7 +6,7 @@ import Product from '../../../model/Product';
 import styles from './productDetails.module.scss';
 
 const ProductDetails = ({ product }: Props): ReactElement => {
-    const imageSrc = isEmpty(product.images) ? '' : product.images[0].url;
+    const imageSrc = !product.images ? '' : product.images[0].url;
 
     return (
         <data className={styles.container}>

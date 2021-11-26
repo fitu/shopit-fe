@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { isEmpty, isNil } from 'lodash';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
@@ -56,7 +55,7 @@ const InputValue = ({
     };
 
     const getTextToRender = (id: string, text: string): string => {
-        if (isNil(id) || isEmpty(id) || id === EMPTY_TEXT_ID) {
+        if (!id || id === EMPTY_TEXT_ID) {
             return text;
         }
 
