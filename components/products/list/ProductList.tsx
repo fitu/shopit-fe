@@ -20,7 +20,7 @@ const ProductList = ({ products }: Props): ReactElement => {
     return (
         <section className={styles.resultsContainer}>
             {products.map((product) =>
-                <Link href={getRoute(product._id)}>
+                <Link href={getRoute(product)}>
                     <a>
                         <ProductDetails key={product._id} product={product} />
                     </a>
