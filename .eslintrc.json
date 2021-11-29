@@ -197,14 +197,6 @@
             }
         ],
         "import/no-mutable-exports": "warn",
-        "import/no-unused-modules": [
-            "warn",
-            {
-                "missingExports": true,
-                "unusedExports": true,
-                "ignoreExports": ["src/index.tsx", "src/types.d.ts"]
-            }
-        ],
         "import/first": ["warn", "absolute-first"],
         "import/exports-last": "warn",
         "import/no-duplicates": "warn",
