@@ -22,6 +22,7 @@ const HomePage = ({ products }: Props): ReactElement => {
     );
 };
 
+// Static Generation
 const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
     const products = getProducts();
 
@@ -29,6 +30,8 @@ const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
         props: {
             products,
         },
+        // Incremental Site Generation
+        revalidate: 30,
     };
 }
 
