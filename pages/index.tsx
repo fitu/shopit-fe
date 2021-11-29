@@ -1,3 +1,4 @@
+import { isEmpty, isNil } from 'lodash';
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next'
 
@@ -22,16 +23,29 @@ const HomePage = ({ products }: Props): ReactElement => {
     );
 };
 
-// Static Generation
+// Static Site Generation
 const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
     const products = getProducts();
+
+    if (isNil(products)) {
+        return {
+            redirect: {
+                destination: 'no-data',
+            }
+        }
+    }
+
+    if (isEmpty(products)) {
+        return {
+            notFound: true, // Show a 404 if true
+        }
+    }
 
     return {
         props: {
             products,
         },
-        // Incremental Site Generation
-        revalidate: 30,
+        revalidate: 30, // Incremental Site Generation
     };
 }
 
