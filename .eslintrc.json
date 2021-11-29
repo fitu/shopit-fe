@@ -30,7 +30,7 @@
             }
         }
     },
-    "plugins": ["react", "react-hooks", "import", "unused-imports", "immutable", "prefer-arrow", "unicorn", "fp", "lodash"],
+    "plugins": ["react", "react-hooks", "import", "immutable", "prefer-arrow", "unicorn", "fp", "lodash"],
     "rules": {
         "indent": ["warn", 4, { "SwitchCase": 1 }],
         "max-len": ["warn", 140],
@@ -238,12 +238,6 @@
             }
         ],
         "import/group-exports": "warn",
-
-        "unused-imports/no-unused-imports": "warn",
-        "unused-imports/no-unused-vars": [
-            "warn",
-            { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-        ],
 
         "immutable/no-let": "warn",
         "immutable/no-this": "off",
