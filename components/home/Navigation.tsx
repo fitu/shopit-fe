@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import ListItem, { Item } from '../ui/ListItem';
 
 import styles from './navigation.module.scss';

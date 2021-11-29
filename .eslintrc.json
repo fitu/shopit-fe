@@ -47,6 +47,7 @@
         "no-useless-return": "warn",
         "no-unused-expressions": "warn",
         "object-shorthand": "warn",
+        "no-underscore-dangle": "warn",
         // You must disable the base rule as it can report incorrect errors
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": "error",
@@ -301,6 +302,7 @@
         "jsx-a11y/no-noninteractive-element-interactions": "warn",
         "jsx-a11y/mouse-events-have-key-events": "warn",
         "jsx-a11y/no-static-element-interactions": "warn",
+        "jsx-a11y/anchor-is-valid": "warn",
 
         "prettier/prettier": "warn"
     }
