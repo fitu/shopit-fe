@@ -13,7 +13,6 @@ interface Props {
 }
 
 const HomePage = ({ products }: Props): ReactElement => {
-
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Latest Products</h1>
@@ -29,25 +28,22 @@ const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
 
     if (isNil(products)) {
         return {
+            props: {},
             redirect: {
-                destination: 'no-data',
-            }
-        }
+                destination: '/not-found',
+            },
+        };
     }
 
     if (isEmpty(products)) {
-        return {
-            notFound: true, // Show a 404 if true
-        }
+        return { notFound: true }; // Show a 404 if true
     }
 
     return {
-        props: {
-            products,
-        },
+        props: { products },
         revalidate: 30, // Incremental Site Generation
     };
-}
+};
 
 export { getStaticProps };
 export default HomePage;
