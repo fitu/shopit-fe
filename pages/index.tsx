@@ -1,12 +1,17 @@
 import { ReactElement } from 'react';
-import ProductList from '../components/products/list/ProductList';
+import { GetStaticProps, GetStaticPropsContext } from 'next'
 
+import ProductList from '../components/products/list/ProductList';
 import { getProducts } from '../data/productData';
+import Product from '../model/Product';
 
 import styles from './index.module.scss';
 
-const HomePage = (): ReactElement => {
-    const products = getProducts();
+interface Props {
+    products: Array<Product>,
+}
+
+const HomePage = ({ products }: Props): ReactElement => {
 
     return (
         <div className={styles.container}>
@@ -17,4 +22,15 @@ const HomePage = (): ReactElement => {
     );
 };
 
+const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
+    const products = getProducts();
+
+    return {
+        props: {
+            products,
+        },
+    };
+}
+
+export { getStaticProps };
 export default HomePage;
