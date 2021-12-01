@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { ReactElement } from 'react';
+import useSWR from 'swr';
 
 import styles from './userDetails.module.scss';
 
@@ -13,6 +14,19 @@ interface Props {
 }
 
 const UserDetailsPage = ({ userId }: Props): ReactElement => {
+    // const { data, error } = useSWR('https://foo.bar', async (url) => {
+    //     const response = await fetch(url);
+    //     return response.json();
+    // });
+
+    // if (error) {
+    //     return <h1>Error!</h1>;
+    // }
+
+    // if (!data) {
+    //     return <h1>NoData</h1>;
+    // }
+
     return (
         <div className={styles.container}>
             {userId}
