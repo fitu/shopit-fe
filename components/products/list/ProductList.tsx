@@ -8,6 +8,10 @@ import ProductDetails from '../details/ProductDetails';
 
 import styles from './productList.module.scss';
 
+interface Props {
+    products: Array<Product>;
+}
+
 const ProductList = ({ products }: Props): ReactElement => {
     if (!products) {
         return (
@@ -20,7 +24,7 @@ const ProductList = ({ products }: Props): ReactElement => {
     return (
         <section className={styles.resultsContainer}>
             {products.map((product) => (
-                <Link href={getRoute(product._id)} key={product._id}>
+                <Link href={getRoute(product)} key={product._id}>
                     <a>
                         <ProductDetails key={product._id} product={product} />
                     </a>
@@ -30,13 +34,7 @@ const ProductList = ({ products }: Props): ReactElement => {
     )
 };
 
-interface Props {
-    products: Array<Product>;
-}
-
-ProductList.propTypes = {
-    products: PropTypes.arrayOf(PropTypes.instanceOf(Product).isRequired).isRequired,
-};
+ProductList.propTypes = { products: PropTypes.arrayOf(PropTypes.instanceOf(Product).isRequired).isRequired };
 
 ProductList.displayName = 'ProductList';
 

@@ -5,11 +5,11 @@ import ProductDetails from '../../components/products/details/ProductDetails';
 import { getProducts } from '../../data/productData';
 import Product from '../../model/Product';
 
-import styles from './productId.module.scss';
+import styles from './productDetails.module.scss';
 
-const getRoute = (productId: string) => ({
+const getRoute = (product: Product) => ({
     pathname: '/products/[id]',
-    query: { id: productId },
+    query: { product: JSON.stringify(product), },
 });
 
 interface Props {
@@ -28,7 +28,7 @@ const ProductDetailsPage = ({ product }: Props): ReactElement => {
     );
 };
 
-const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
+const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const { params } = context;
 
     const products = getProducts();
@@ -44,7 +44,7 @@ const getStaticProps: GetStaticProps = (context: GetStaticPropsContext) => {
     };
 };
 
-const getStaticPaths: GetStaticPaths = (context: GetStaticPropsContext) => {
+const getStaticPaths: GetStaticPaths = async () => {
     const products = getProducts();
     const paths = products.map((product) => ({ params: { id: product._id } }));
 
