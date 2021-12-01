@@ -86,7 +86,7 @@
         "react/prefer-read-only-props": "warn",
         "react/prefer-stateless-function": "warn",
         "react/prop-types": ["warn", { "ignore": ["children"] }],
-        "react/react-in-jsx-scope": "warn",
+        "react/react-in-jsx-scope": "off",
         "react/require-default-props": "off",
         "react/self-closing-comp": ["warn", { "component": true, "html": true }],
         "react/sort-prop-types": [

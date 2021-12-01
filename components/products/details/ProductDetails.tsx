@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
 import Product from '../../../model/Product';
 
 import styles from './productDetails.module.scss';
+
+interface Props {
+    product: Product;
+}
 
 const ProductDetails = ({ product }: Props): ReactElement => {
     const imageSrc = !product.images ? '' : product.images[0].url;
@@ -18,15 +22,11 @@ const ProductDetails = ({ product }: Props): ReactElement => {
                 <span className={styles.price}>{`$ ${product.price}`}</span>
             </div>
         </data>
-    )
+    );
 };
 
-interface Props {
-    product: Product;
-}
+ProductDetails.propTypes = { product: PropTypes.instanceOf(Product).isRequired };
 
-ProductDetails.propTypes = {
-    product: PropTypes.instanceOf(Product).isRequired,
-}
+ProductDetails.displayName = 'ProductDetails';
 
 export default ProductDetails;
