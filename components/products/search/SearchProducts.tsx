@@ -1,4 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import {yupResolver} from '@hookform/resolvers/yup';
 import React, { ReactElement } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
