@@ -1,4 +1,5 @@
 import { AppProps } from 'next/dist/shared/lib/router/router';
+import Head from 'next/head';
 import { ReactElement } from 'react';
 
 import Navigation from '../components/home/Navigation';
@@ -11,6 +12,11 @@ import styles from './app.module.scss';
 
 const ShopitApp = ({ Component, pageProps }: AppProps): ReactElement => (
   <InternationalizationProvider>
+    <Head>
+      <title>Shopit!</title>
+      <meta name='description' content='Shopit app' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    </Head>
     <header className={styles.headerContainer}>
       <Logo />
       <div className={styles.searchContainer}>
@@ -26,6 +32,6 @@ const ShopitApp = ({ Component, pageProps }: AppProps): ReactElement => (
   </InternationalizationProvider>
 );
 
-ShopitApp.displayName = 'MyAShopitApppp';
+ShopitApp.displayName = 'MyAShopitApp';
 
 export default ShopitApp;

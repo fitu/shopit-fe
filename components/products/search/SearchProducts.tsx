@@ -1,14 +1,15 @@
-import {yupResolver} from '@hookform/resolvers/yup';
+// import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import React, { ReactElement } from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { useForm } from 'react-hook-form';
+import { FaSearch } from 'react-icons/fa';
 import * as Yup from 'yup';
 
-import InputForm from '../../forms/input/InputForm';
 import ButtonWithIcon from '../../forms/button/ButtonWithIcon';
+import InputForm from '../../forms/input/InputForm';
 
-import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 import styles from './searchProducts.module.scss';
+import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 
 const SearchProducts: React.FC = (): ReactElement => {
     const validationSchema = Yup.object().shape({
