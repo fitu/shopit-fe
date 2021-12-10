@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 
@@ -12,14 +13,16 @@ interface Props {
 const ProductDetails = ({ product }: Props): ReactElement => {
     const imageSrc = !product.images ? '' : product.images[0].url;
 
+    const priceWithSymbol = `$ ${product.price}`;
+
     return (
         <data className={styles.container}>
             <div className={styles.imageContainer}>
-                <img className={styles.image} src={imageSrc} alt={product.name} />
+                <Image alt={product.name} className={styles.image} height={240} src={imageSrc} width={240} />
             </div>
             <div className={styles.detailsContainer}>
                 <span className={styles.name}>{product.name}</span>
-                <span className={styles.price}>{`$ ${product.price}`}</span>
+                <span className={styles.price}>{priceWithSymbol}</span>
             </div>
         </data>
     );

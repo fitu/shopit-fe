@@ -18,7 +18,7 @@ const ProductList = ({ products }: Props): ReactElement => {
             <section className={styles.noResultsContainer}>
                 <span className={styles.noResultsText}>No Products!</span>
             </section>
-        )
+        );
     }
 
     return (
@@ -31,7 +31,7 @@ const ProductList = ({ products }: Props): ReactElement => {
                 </Link>
             ))}
         </section>
-    )
+    );
 };
 
 ProductList.propTypes = { products: PropTypes.arrayOf(PropTypes.instanceOf(Product).isRequired).isRequired };
