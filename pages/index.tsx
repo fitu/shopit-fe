@@ -2,8 +2,8 @@ import { isEmpty, isNil } from 'lodash';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
 
+import { getAllProducts } from '../api/products/productsApi';
 import ProductList from '../components/products/list/ProductList';
-import { getProducts } from '../data/productData';
 import Product from '../model/Product';
 
 import styles from './index.module.scss';
@@ -23,8 +23,8 @@ const HomePage = ({ products }: Props): ReactElement => {
 };
 
 // Static Site Generation
-const getStaticProps: GetStaticProps = () => {
-    const products = getProducts();
+const getStaticProps: GetStaticProps = async () => {
+    const products = await getAllProducts();
 
     if (isNil(products)) {
         return {

@@ -1,5 +1,8 @@
+// TODO: add builder
 class Image {
-    constructor(public _id: string, public public_id: string, public url: string) {}
+    constructor(public id: string, public publicId: string, public url: string) {
+        // Empty constructor
+    }
 }
 
 export default Image;
