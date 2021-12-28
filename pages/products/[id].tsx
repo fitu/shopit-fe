@@ -46,7 +46,7 @@ const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) =>
 
 const getStaticPaths: GetStaticPaths = async () => {
     const products = await getAllProducts();
-    const paths = products.map((product) => ({ params: { id: product.id } }));
+    const paths = products.map((product) => ({ params: { id: product.id.toString() } }));
 
     return {
         paths,

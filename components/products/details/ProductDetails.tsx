@@ -18,10 +18,10 @@ const ProductDetails = ({ product }: Props): ReactElement => {
     return (
         <data className={styles.container}>
             <div className={styles.imageContainer}>
-                <Image alt={product.name} className={styles.image} height={240} src={imageSrc} width={240} />
+                <Image alt={product.title} className={styles.image} height={240} src={imageSrc} width={240} />
             </div>
             <div className={styles.detailsContainer}>
-                <span className={styles.name}>{product.name}</span>
+                <span className={styles.name}>{product.title}</span>
                 <span className={styles.price}>{priceWithSymbol}</span>
             </div>
         </data>

@@ -1,3 +1,6 @@
+import { v4 as uuidv4 } from 'uuid';
+
+import Image from '../../model/Image';
 import Product from '../../model/Product';
 
 // TODO: add reviews and images
@@ -8,8 +11,9 @@ class ProductApi {
         public price: number,
         public ratings: number | null,
         public numberOfReviews: number,
-        public name: string,
+        public title: string,
         public description: string,
+        public imageUrl: string,
         public category: string,
         public seller: string,
         public stock: number,
@@ -23,15 +27,15 @@ class ProductApi {
             productApi.id,
             productApi.price,
             productApi.ratings,
-            productApi.numberOfReviews,
-            productApi.name,
+            productApi.numberOfReviews ?? 0,
+            productApi.title,
             productApi.description,
-            [],
+            [new Image(uuidv4(), uuidv4(), productApi.imageUrl)],
             productApi.category,
-            productApi.seller,
+            productApi.seller ?? '',
             productApi.stock,
             [],
-            productApi.createdAt,
+            productApi.createdAt ?? new Date().toUTCString(),
         );
     };
 
@@ -41,8 +45,9 @@ class ProductApi {
             product.price,
             product.ratings,
             product.numberOfReviews,
-            product.name,
+            product.title,
             product.description,
+            product.images[0].url,
             product.category,
             product.seller,
             product.stock,

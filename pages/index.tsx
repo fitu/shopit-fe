@@ -40,7 +40,7 @@ const getStaticProps: GetStaticProps = async () => {
     }
 
     return {
-        props: { products },
+        props: { products: JSON.parse(JSON.stringify(products)) },
         revalidate: 30, // Incremental Site Generation
     };
 };

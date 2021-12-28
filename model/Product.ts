@@ -8,7 +8,7 @@ class Product {
         public price: number,
         public ratings: number | null,
         public numberOfReviews: number,
-        public name: string,
+        public title: string,
         public description: string,
         public images: Array<Image>,
         public category: string,
