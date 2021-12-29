@@ -29,7 +29,7 @@ const ProductDetailsPage = ({ product }: Props): ReactElement => {
 
     return (
         <div className={styles.container}>
-            <ProductDetails product={product} />
+            <ProductDetails isEditMode product={product} />
         </div>
     );
 };

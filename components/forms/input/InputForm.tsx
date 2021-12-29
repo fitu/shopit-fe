@@ -8,6 +8,23 @@ import { getTextToRender } from '../../utils/textUtils';
 
 import styles from './input.module.scss';
 
+interface Props {
+    isSubmitted: boolean;
+    isValid?: boolean;
+    label?: string;
+    labelId?: string;
+    name: string;
+    onlyPositives?: boolean;
+    onlyPositivesWithoutZero?: boolean;
+    type?: string;
+    placeHolder?: string;
+    placeHolderId?: string;
+    register?: ((name: any, options?: any) => void) | null;
+    step?: number;
+    validations?: any;
+    value?: number | string | null;
+}
+
 const InputForm = ({
     isSubmitted,
     isValid,
@@ -60,23 +77,6 @@ const InputForm = ({
         </div>
     );
 };
-
-interface Props {
-    isSubmitted: boolean;
-    isValid?: boolean;
-    label?: string;
-    labelId?: string;
-    name: string;
-    onlyPositives?: boolean;
-    onlyPositivesWithoutZero?: boolean;
-    type?: string;
-    placeHolder?: string;
-    placeHolderId?: string;
-    register?: ((name: any, options?: any) => void) | null;
-    step?: number;
-    validations?: any;
-    value?: number | string | null;
-}
 
 InputForm.propTypes = {
     isSubmitted: PropTypes.bool.isRequired,

@@ -7,6 +7,22 @@ import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 
 import styles from './input.module.scss';
 
+interface Props {
+    isSubmitted?: boolean;
+    isValid?: boolean;
+    label?: string;
+    labelId?: string;
+    name: string;
+    onlyPositives?: boolean;
+    onlyPositivesWithoutZero?: boolean;
+    type?: string;
+    placeHolder?: string;
+    placeHolderId?: string;
+    step?: number;
+    value: number | string | null;
+    setValue: (value: number | string) => void;
+}
+
 const InputValue = ({
     isSubmitted = false,
     isValid,
@@ -72,22 +88,6 @@ const InputValue = ({
         </div>
     );
 };
-
-interface Props {
-    isSubmitted?: boolean;
-    isValid?: boolean;
-    label?: string;
-    labelId?: string;
-    name: string;
-    onlyPositives?: boolean;
-    onlyPositivesWithoutZero?: boolean;
-    type?: string;
-    placeHolder?: string;
-    placeHolderId?: string;
-    step?: number;
-    value: number | string | null;
-    setValue: (value: number | string) => void;
-}
 
 InputValue.propTypes = {
     isSubmitted: PropTypes.bool,

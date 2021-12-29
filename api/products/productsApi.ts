@@ -16,8 +16,8 @@ const getAllProducts = async (): Promise<Array<Product>> => {
     return data.data.map((productApi) => ProductApi.toModel(productApi));
 };
 
-const getProductById = async (id: string): Promise<Product> => {
-    const { data } = await api.get<BaseApiResponse<ProductApi>>(`${PRODUCTS_URL}/${id}`);
+const getProductById = async (productId: string): Promise<Product> => {
+    const { data } = await api.get<BaseApiResponse<ProductApi>>(`${PRODUCTS_URL}/${productId}`);
 
     if (!data.success) {
         throw ApiError.newInstance(data.errors);
@@ -26,4 +26,24 @@ const getProductById = async (id: string): Promise<Product> => {
     return ProductApi.toModel(data.data);
 };
 
-export { getAllProducts, getProductById };
+const editProduct = async (productId: string): Promise<Product> => {
+    const { data } = await api.put<BaseApiResponse<ProductApi>>(`${PRODUCTS_URL}/${productId}`);
+
+    if (!data.success) {
+        throw ApiError.newInstance(data.errors);
+    }
+
+    return ProductApi.toModel(data.data);
+};
+
+const deleteProductById = async (productId: string): Promise<boolean> => {
+    const { data } = await api.delete<BaseApiResponse<void>>(`${PRODUCTS_URL}/${productId}`);
+
+    if (!data.success) {
+        throw ApiError.newInstance(data.errors);
+    }
+
+    return data.success;
+};
+
+export { getAllProducts, getProductById, editProduct, deleteProductById };

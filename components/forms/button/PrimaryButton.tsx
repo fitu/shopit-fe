@@ -9,6 +9,16 @@ import { getTextToRender } from '../../utils/textUtils';
 
 import styles from './button.module.scss';
 
+interface Props {
+    isBold?: boolean;
+    isDisabled?: boolean;
+    isRounded?: boolean;
+    isSubmit?: boolean;
+    title?: string;
+    titleId?: string;
+    onClick?: () => void;
+}
+
 const PrimaryButton: React.FC<Props> = ({
     isBold = false,
     isDisabled = false,
@@ -34,16 +44,6 @@ const PrimaryButton: React.FC<Props> = ({
         </button>
     );
 };
-
-interface Props {
-    isBold?: boolean;
-    isDisabled?: boolean;
-    isRounded?: boolean;
-    isSubmit?: boolean;
-    title?: string;
-    titleId?: string;
-    onClick?: () => void;
-}
 
 PrimaryButton.propTypes = {
     isBold: PropTypes.bool,

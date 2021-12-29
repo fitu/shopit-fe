@@ -9,6 +9,13 @@ import { getTextToRender } from '../../utils/textUtils';
 
 import styles from './button.module.scss';
 
+interface Props {
+    isSubmit?: boolean;
+    title?: string;
+    titleId?: string;
+    onClick?: () => void;
+}
+
 const ButtonWithIcon: React.FC<Props> = ({
     isSubmit = false,
     title = '',
@@ -33,13 +40,6 @@ const ButtonWithIcon: React.FC<Props> = ({
         </button>
     );
 };
-
-interface Props {
-    isSubmit?: boolean;
-    title?: string;
-    titleId?: string;
-    onClick?: () => void;
-}
 
 ButtonWithIcon.propTypes = {
     isSubmit: PropTypes.bool,

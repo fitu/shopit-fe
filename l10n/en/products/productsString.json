@@ -1,3 +1,5 @@
 {
-    "products.content.no_product_to_show": "No product to show"
+    "products.content.no_product_to_show": "No product to show",
+    "products.content.edit": "Edit",
+    "products.content.delete": "Delete"
 }
