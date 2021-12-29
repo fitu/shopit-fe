@@ -1,7 +1,8 @@
-import englishStrings from './en/strings.json';
+import englishGeneralStrings from './en/generalStrings.json';
+import englishHomeStrings from './en/home/homeStrings.json';
 
 const DEFAULT_LOCALE = 'en';
-const DEFAULT_STRINGS = englishStrings;
+const DEFAULT_STRINGS = { ...englishGeneralStrings, ...englishHomeStrings };
 
 // This should match with json files
 const EMPTY_TEXT_ID = 'empty';

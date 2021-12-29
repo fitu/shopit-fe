@@ -13,6 +13,7 @@ const LanguageContext = React.createContext<LanguageContextType>({
     selectLanguage: DEFAULT_STRINGS,
 });
 
+
 const InternationalizationProvider: React.FC = ({ children }): ReactElement => {
     const [locale, setLocale] = useState<string>(DEFAULT_LOCALE);
     const [messages, setMessages] = useState<any>(DEFAULT_STRINGS);

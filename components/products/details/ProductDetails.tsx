@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
+import { FormattedNumber } from 'react-intl';
 
 import Product from '../../../model/Product';
 
@@ -13,8 +14,6 @@ interface Props {
 const ProductDetails = ({ product }: Props): ReactElement => {
     const imageSrc = !product.images ? '' : product.images[0].url;
 
-    const priceWithSymbol = `$ ${product.price}`;
-
     return (
         <data className={styles.container}>
             <div className={styles.imageContainer}>
@@ -22,7 +21,9 @@ const ProductDetails = ({ product }: Props): ReactElement => {
             </div>
             <div className={styles.detailsContainer}>
                 <span className={styles.name}>{product.title}</span>
-                <span className={styles.price}>{priceWithSymbol}</span>
+                <span className={styles.price}>
+                    <FormattedNumber currency={'USD'} style="currency" value={product.price} />
+                </span>
             </div>
         </data>
     );

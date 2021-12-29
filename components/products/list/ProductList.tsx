@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
 
 import Product from '../../../model/Product';
 import { getRoute } from '../../../pages/products/[id]';
@@ -13,10 +14,12 @@ interface Props {
 }
 
 const ProductList = ({ products }: Props): ReactElement => {
+    const intl = useIntl();
+
     if (!products) {
         return (
             <section className={styles.noResultsContainer}>
-                <span className={styles.noResultsText}>No Products!</span>
+                <span className={styles.noResultsText}>{intl.formatMessage({ id: 'home.content.no_products' })}</span>
             </section>
         );
     }

@@ -1,6 +1,7 @@
 import { isEmpty, isNil } from 'lodash';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
+import { useIntl } from 'react-intl';
 
 import { getAllProducts } from '../api/products/productsApi';
 import ProductList from '../components/products/list/ProductList';
@@ -13,35 +14,34 @@ interface Props {
 }
 
 const HomePage = ({ products }: Props): ReactElement => {
+    const intl = useIntl();
+
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>Latest Products</h1>
+            <h1 className={styles.title}>{intl.formatMessage({ id: 'home.content.title' })}</h1>
             <ProductList products={products} />
             <footer />
         </div>
     );
 };
 
-// Static Site Generation
 const getStaticProps: GetStaticProps = async () => {
     const products = await getAllProducts();
 
     if (isNil(products)) {
         return {
             props: {},
-            redirect: {
-                destination: '/not-found',
-            },
+            redirect: { destination: '/not-found' },
         };
     }
 
     if (isEmpty(products)) {
-        return { notFound: true }; // Show a 404 if true
+        return { notFound: true };
     }
 
     return {
         props: { products: JSON.parse(JSON.stringify(products)) },
-        revalidate: 30, // Incremental Site Generation
+        revalidate: 300,
     };
 };
 
