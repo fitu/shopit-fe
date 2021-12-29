@@ -12,20 +12,15 @@ import styles from './searchProducts.module.scss';
 import { SEARCH, SearchProductsFormType } from './searchProductsFormTypes';
 
 const SearchProducts: React.FC = (): ReactElement => {
-    const validationSchema = Yup.object().shape({
-        [SEARCH]: Yup.string().required(),
-    });
+    const validationSchema = Yup.object().shape({ [SEARCH]: Yup.string().required() });
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitted },
-    } = useForm<SearchProductsFormType>({
-        resolver: yupResolver(validationSchema),
-    });
+    } = useForm<SearchProductsFormType>({ resolver: yupResolver(validationSchema) });
 
-    const onSubmit = async (formData: SearchProductsFormType): Promise<void> => {
-    }
+    const onSubmit = async (formData: SearchProductsFormType): Promise<void> => { };
 
     return (
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
@@ -33,7 +28,7 @@ const SearchProducts: React.FC = (): ReactElement => {
                 isSubmitted={isSubmitted}
                 isValid={errors[SEARCH] !== undefined}
                 name={SEARCH}
-                placeHolderId='layout.header.search_here'
+                placeHolderId="layout.header.search_here"
                 register={register}
             />
             <div className={styles.searchButton}>
@@ -42,8 +37,9 @@ const SearchProducts: React.FC = (): ReactElement => {
                 </ButtonWithIcon>
             </div>
         </form>
-    )
+    );
 };
 
-export default SearchProducts;
+SearchProducts.displayName = 'SearchProducts';
 
+export default SearchProducts;

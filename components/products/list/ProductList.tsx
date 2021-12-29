@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import Product from '../../../model/Product';
 import { getRoute } from '../../../pages/products/[id]';
@@ -14,12 +14,12 @@ interface Props {
 }
 
 const ProductList = ({ products }: Props): ReactElement => {
-    const intl = useIntl();
-
     if (!products) {
         return (
             <section className={styles.noResultsContainer}>
-                <span className={styles.noResultsText}>{intl.formatMessage({ id: 'home.content.no_products' })}</span>
+                <span className={styles.noResultsText}>
+                    <FormattedMessage id="home.content.no_products" />
+                </span>
             </section>
         );
     }
@@ -27,7 +27,7 @@ const ProductList = ({ products }: Props): ReactElement => {
     return (
         <section className={styles.resultsContainer}>
             {products.map((product) => (
-                <Link href={getRoute(product)} key={product.id}>
+                <Link href={getRoute(product.id)} key={product.id}>
                     <a>
                         <ProductDetails key={product.id} product={product} />
                     </a>

@@ -263,7 +263,7 @@
                 }
             }
         ],
-        "unicorn/no-null": "warn",
+        "unicorn/no-null": "off",
         "unicorn/prefer-ternary": "warn",
         "unicorn/explicit-length-check": "warn",
         "unicorn/better-regex": "warn",

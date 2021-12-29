@@ -3,6 +3,7 @@ import { noop } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
+
 import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 import { getTextToRender } from '../../utils/textUtils';
 

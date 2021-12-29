@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
+
 import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 import { getTextToRender } from '../../utils/textUtils';
 
@@ -46,14 +47,7 @@ const InputForm = ({
             );
         }
 
-        return (
-            <input
-                placeholder={text}
-                type={type}
-                {...register?.(name, validations)}
-                value={value ?? undefined}
-            />
-        );
+        return <input placeholder={text} type={type} {...register?.(name, validations)} value={value ?? undefined} />;
     };
 
     const labelText = getTextToRender(labelId, label, intl);
@@ -95,8 +89,8 @@ InputForm.propTypes = {
     placeHolder: PropTypes.string,
     placeHolderId: PropTypes.string,
     register: PropTypes.func,
-    type: PropTypes.string,
     step: PropTypes.number,
+    type: PropTypes.string,
     validations: PropTypes.object,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

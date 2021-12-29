@@ -3,6 +3,7 @@ import { noop } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { ReactElement, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
+
 import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 import { getTextToRender } from '../../utils/textUtils';
 
@@ -20,13 +21,8 @@ const ButtonWithIcon: React.FC<Props> = ({
     const containerClasses = classNames(styles.buttonIconContainer);
     const textClasses = classNames(styles.buttonIconText);
 
-    const renderTitle = (): ReactNode => (
-        titleId ? (
-            <span className={textClasses}>
-                {getTextToRender(titleId, title, intl)}
-            </span>
-        ) : (<></>)
-    );
+    const renderTitle = (): ReactNode | null =>
+        titleId ? <span className={textClasses}>{getTextToRender(titleId, title, intl)}</span> : null;
 
     const type = isSubmit ? 'submit' : 'button';
 

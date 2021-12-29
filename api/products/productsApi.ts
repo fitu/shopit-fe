@@ -16,4 +16,14 @@ const getAllProducts = async (): Promise<Array<Product>> => {
     return data.data.map((productApi) => ProductApi.toModel(productApi));
 };
 
-export { getAllProducts };
+const getProductById = async (id: string): Promise<Product> => {
+    const { data } = await api.get<BaseApiResponse<ProductApi>>(`${PRODUCTS_URL}/${id}`);
+
+    if (!data.success) {
+        throw ApiError.newInstance(data.errors);
+    }
+
+    return ProductApi.toModel(data.data);
+};
+
+export { getAllProducts, getProductById };

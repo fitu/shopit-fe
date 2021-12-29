@@ -1,7 +1,7 @@
 import { isEmpty, isNil } from 'lodash';
 import { GetStaticProps } from 'next';
 import { ReactElement } from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { getAllProducts } from '../api/products/productsApi';
 import ProductList from '../components/products/list/ProductList';
@@ -14,11 +14,11 @@ interface Props {
 }
 
 const HomePage = ({ products }: Props): ReactElement => {
-    const intl = useIntl();
-
     return (
         <div className={styles.container}>
-            <h1 className={styles.title}>{intl.formatMessage({ id: 'home.content.title' })}</h1>
+            <h1 className={styles.title}>
+                <FormattedMessage id="home.content.title" />
+            </h1>
             <ProductList products={products} />
             <footer />
         </div>

@@ -1,10 +1,11 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { UrlObject } from 'node:url';
 import { ReactElement } from 'react';
 import useSWR from 'swr';
 
 import styles from './userDetails.module.scss';
 
-const getRoute = (userId: string) => ({
+const getRoute = (userId: string): UrlObject => ({
     pathname: '/products/[id]',
     query: { id: userId },
 });
@@ -27,19 +28,11 @@ const UserDetailsPage = ({ userId }: Props): ReactElement => {
     //     return <h1>NoData</h1>;
     // }
 
-    return (
-        <div className={styles.container}>
-            {userId}
-        </div>
-    );
+    return <div className={styles.container}>{userId}</div>;
 };
 
 const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-    return {
-        props: {
-            userId: '123',
-        },
-    };
+    return { props: { userId: '123' }, };
 };
 
 UserDetailsPage.displayName = 'UserDetailsPage';

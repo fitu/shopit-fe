@@ -1,15 +1,17 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { UrlObject } from 'node:url';
 import { ReactElement } from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { getAllProducts } from '../../api/products/productsApi';
+import { getAllProducts, getProductById } from '../../api/products/productsApi';
 import ProductDetails from '../../components/products/details/ProductDetails';
 import Product from '../../model/Product';
 
 import styles from './productDetails.module.scss';
 
-const getRoute = (product: Product) => ({
+const getRoute = (productId: string): UrlObject => ({
     pathname: '/products/[id]',
-    query: { product: JSON.stringify(product), },
+    query: { id: productId },
 });
 
 interface Props {
@@ -18,7 +20,11 @@ interface Props {
 
 const ProductDetailsPage = ({ product }: Props): ReactElement => {
     if (!product) {
-        return <div>No product to show</div>;
+        return (
+            <div>
+                <FormattedMessage id="products.content.no_product_to_show" />
+            </div>
+        );
     }
 
     return (
@@ -31,17 +37,17 @@ const ProductDetailsPage = ({ product }: Props): ReactElement => {
 const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
     const { params } = context;
 
-    const products = await getAllProducts();
-
-    const foundProduct = products.find((product) => product.id === params?.id);
-
-    if (!foundProduct) {
+    if (!params?.id) {
         return { notFound: true };
     }
 
-    return {
-        props: { product: foundProduct },
-    };
+    const product = await getProductById(params.id as string);
+
+    if (!product) {
+        return { notFound: true };
+    }
+
+    return { props: { product: JSON.parse(JSON.stringify(product)) } };
 };
 
 const getStaticPaths: GetStaticPaths = async () => {

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 import { useIntl } from 'react-intl';
+
 import { EMPTY_TEXT_ID } from '../../../l10n/languages';
 
 import styles from './input.module.scss';
@@ -60,7 +61,7 @@ const InputValue = ({
         }
 
         return intl.formatMessage({ id });
-    }
+    };
 
     const labelText = getTextToRender(labelId, label);
     const placeHolderText = getTextToRender(placeHolderId, placeHolder);
@@ -98,10 +99,10 @@ InputValue.propTypes = {
     onlyPositivesWithoutZero: PropTypes.bool,
     placeHolder: PropTypes.string,
     placeHolderId: PropTypes.string,
-    type: PropTypes.string,
-    step: PropTypes.number,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     setValue: PropTypes.func.isRequired,
+    step: PropTypes.number,
+    type: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 InputValue.displayName = 'InputValue';

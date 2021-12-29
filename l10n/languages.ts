@@ -1,8 +1,15 @@
+import english404Strings from './en/404/404Strings.json';
 import englishGeneralStrings from './en/generalStrings.json';
 import englishHomeStrings from './en/home/homeStrings.json';
+import englishProductsStrings from './en/products/productsString.json';
 
 const DEFAULT_LOCALE = 'en';
-const DEFAULT_STRINGS = { ...englishGeneralStrings, ...englishHomeStrings };
+const DEFAULT_STRINGS = {
+    ...englishGeneralStrings,
+    ...english404Strings,
+    ...englishHomeStrings,
+    ...englishProductsStrings,
+};
 
 // This should match with json files
 const EMPTY_TEXT_ID = 'empty';
