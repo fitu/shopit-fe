@@ -1,0 +1,7 @@
+.label {
+    color: colors.$black;
+
+    &:hover {
+        color: colors.$text-color;
+    }
+}

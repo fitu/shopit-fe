@@ -28,15 +28,7 @@
     gap: 1rem;
 }
 
-.name {
-    color: colors.$black;
-
-    &:hover {
-        color: colors.$text-color;
-    }
-}
-
-.price {
-    font-size: 1.2rem;
-    font-weight: bold;
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
 }

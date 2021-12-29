@@ -5,12 +5,15 @@ import { useIntl } from 'react-intl';
 import { getTextToRender } from '../utils/textUtils';
 
 import styles from './listItem.module.scss';
-
 interface Item {
     id: string;
     label?: string;
     labelId?: string;
     onClick?: (id: string) => void;
+}
+
+interface Props {
+    item: Item;
 }
 
 const ListItem = ({ item }: Props): ReactElement => {
@@ -26,10 +29,6 @@ const ListItem = ({ item }: Props): ReactElement => {
         </li>
     );
 };
-
-interface Props {
-    item: Item;
-}
 
 const itemShape = {
     id: PropTypes.string.isRequired,
