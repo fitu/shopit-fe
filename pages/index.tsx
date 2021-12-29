@@ -1,5 +1,6 @@
 import { isEmpty, isNil } from 'lodash';
 import { GetStaticProps } from 'next';
+import { UrlObject } from 'node:url';
 import { ReactElement } from 'react';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,6 +9,8 @@ import ProductList from '../components/products/list/ProductList';
 import Product from '../model/Product';
 
 import styles from './index.module.scss';
+
+const getRoute = (): UrlObject => ({ pathname: '/' });
 
 interface Props {
     products: Array<Product>;
@@ -47,5 +50,5 @@ const getStaticProps: GetStaticProps = async () => {
 
 HomePage.displayName = 'HomePage';
 
-export { getStaticProps };
+export { getRoute, getStaticProps };
 export default HomePage;
