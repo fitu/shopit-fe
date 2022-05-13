@@ -5,6 +5,7 @@ import { useIntl } from 'react-intl';
 import { getTextToRender } from '../utils/textUtils';
 
 import styles from './listItem.module.scss';
+
 interface Item {
     id: string;
     label?: string;
